@@ -1,7 +1,15 @@
-import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import WebWorkerExample from './WebWorkerExample'
+import Providers from './providers'
 
-function App() {
-  return <div></div>
+const App = () => {
+  return (
+    <Providers>
+      <Routes>
+        <Route path="/" element={<WebWorkerExample />} />
+      </Routes>
+    </Providers>
+  )
 }
 
 export default App
