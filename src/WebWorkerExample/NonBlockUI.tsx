@@ -1,7 +1,11 @@
+import { Button, Card, Stack, Typography } from '@mui/joy'
 import { useEffect, useRef, useState } from 'react'
 
 const NonBlockUI = () => {
   const [result, setResult] = useState(0)
+  const [calculating, setCalculating] = useState(false)
+  const [counter, setCounter] = useState(0)
+
   const worker = useRef<Worker | null>(null)
 
   useEffect(() => {
@@ -11,6 +15,7 @@ const NonBlockUI = () => {
 
       worker.current.addEventListener('message', (e: MessageEvent<number>) => {
         setResult(e.data)
+        setCalculating(false)
       })
     } else {
       // Web Workers are not supported, handle it accordingly
@@ -25,14 +30,27 @@ const NonBlockUI = () => {
     }
   }, [])
 
+  const calculate = () => {
+    worker.current?.postMessage('calculate')
+    setCalculating(true)
+  }
+
   return (
-    <div>
-      <button onClick={() => worker.current?.postMessage('hello')}>
-        Perform Heavy Calculation
-      </button>
-      <div>Result: {result}</div>
-      <button onClick={() => console.log(1)}>Click</button>
-    </div>
+    <Card>
+      <Typography>Web worker</Typography>
+      <Stack direction={'row'} alignItems={'center'} columnGap={3}>
+        <Button onClick={calculate} disabled={calculating}>
+          Perform Heavy Calculation
+        </Button>
+        <Typography>
+          Result: {calculating ? 'Calculating...' : result}
+        </Typography>
+      </Stack>
+      <Stack direction={'row'} alignItems={'center'} columnGap={3}>
+        <Button onClick={() => setCounter(counter + 1)}>Inc Counter</Button>
+        <Typography>{counter}</Typography>
+      </Stack>
+    </Card>
   )
 }
 
