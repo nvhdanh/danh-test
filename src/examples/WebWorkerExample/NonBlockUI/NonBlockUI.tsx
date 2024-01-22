@@ -1,5 +1,6 @@
 import { Button, Card, Stack, Typography } from '@mui/joy'
 import { useEffect, useRef, useState } from 'react'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 const NonBlockUI = () => {
   const [result, setResult] = useState(0)
@@ -37,7 +38,16 @@ const NonBlockUI = () => {
 
   return (
     <Card>
-      <Typography>Web worker</Typography>
+      <Typography fontWeight={'bold'}>Web worker</Typography>
+      <Typography
+        fontSize={'xs'}
+        startDecorator={<InfoOutlinedIcon fontSize="small" />}
+      >
+        Clicking on "Perform Heavy Calculation" does not impact the overall UI
+        functionality. You can click on "Inc Counter" to observe that the "Inc
+        Counter" event still operates as before, thanks to the heavy calculation
+        being handled by a web worker.
+      </Typography>
       <Stack direction={'row'} alignItems={'center'} columnGap={3}>
         <Button onClick={calculate} disabled={calculating}>
           Perform Heavy Calculation

@@ -1,6 +1,6 @@
 import { Button, Card, Stack, Typography } from '@mui/joy'
 import { useState } from 'react'
-
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 function generateRandomNumber() {
   const min = 2 * 1000 * 1000 * 1000
   const max = 3 * 1000 * 1000 * 1000
@@ -28,7 +28,16 @@ const BlockUI = () => {
 
   return (
     <Card>
-      <Typography>Normal Implementation</Typography>
+      <Typography fontWeight={'bold'}>Normal Implementation</Typography>
+      <Typography
+        fontSize={'xs'}
+        startDecorator={<InfoOutlinedIcon fontSize="small" />}
+      >
+        Clicking on "Perform Heavy Calculation" will result in the entire user
+        interface being temporarily inaccessible. To observe this, you can click
+        on "Inc Counter." The "Inc Counter" event will only be triggered once
+        the heavy calculation is completed.
+      </Typography>
       <Stack direction={'row'} alignItems={'center'} columnGap={3}>
         <Button
           onClick={() => {
