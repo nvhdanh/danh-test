@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/joy'
 import BlockUI from './BlockUI/BlockUI'
 import NonBlockUI from './NonBlockUI/NonBlockUI'
 
-const WebWorkerExample = () => {
+const WebWorker = () => {
   return (
     <Box>
       <Typography textAlign={'center'} fontWeight={'bold'} fontSize={'lg'}>
@@ -27,4 +27,4 @@ const WebWorkerExample = () => {
   )
 }
 
-export default WebWorkerExample
+export default WebWorker
