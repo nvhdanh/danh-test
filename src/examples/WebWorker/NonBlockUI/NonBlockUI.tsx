@@ -1,40 +1,40 @@
-import { Button, Card, Stack, Typography } from '@mui/joy'
-import { useEffect, useRef, useState } from 'react'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import { Button, Card, Stack, Typography } from '@mui/joy';
+import { useEffect, useRef, useState } from 'react';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const NonBlockUI = () => {
-  const [result, setResult] = useState(0)
-  const [calculating, setCalculating] = useState(false)
-  const [counter, setCounter] = useState(0)
+  const [result, setResult] = useState(0);
+  const [calculating, setCalculating] = useState(false);
+  const [counter, setCounter] = useState(0);
 
-  const worker = useRef<Worker | null>(null)
+  const worker = useRef<Worker | null>(null);
 
   useEffect(() => {
     if (typeof Worker !== 'undefined') {
-      const url = new URL('./worker.js', import.meta.url)
-      worker.current = new Worker(url)
+      const url = new URL('./worker.js', import.meta.url);
+      worker.current = new Worker(url);
 
       worker.current.addEventListener('message', (e: MessageEvent<number>) => {
-        setResult(e.data)
-        setCalculating(false)
-      })
+        setResult(e.data);
+        setCalculating(false);
+      });
     } else {
       // Web Workers are not supported, handle it accordingly
-      console.error('Web Workers are not supported in this browser.')
+      console.error('Web Workers are not supported in this browser.');
     }
 
     // Cleanup on component unmount
     return () => {
       if (worker.current) {
-        worker.current.terminate()
+        worker.current.terminate();
       }
-    }
-  }, [])
+    };
+  }, []);
 
   const calculate = () => {
-    worker.current?.postMessage('calculate')
-    setCalculating(true)
-  }
+    worker.current?.postMessage('calculate');
+    setCalculating(true);
+  };
 
   return (
     <Card>
@@ -61,7 +61,7 @@ const NonBlockUI = () => {
         <Typography>{counter}</Typography>
       </Stack>
     </Card>
-  )
-}
+  );
+};
 
-export default NonBlockUI
+export default NonBlockUI;

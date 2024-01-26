@@ -1,6 +1,6 @@
-import { Box, Stack, Typography } from '@mui/joy'
-import BlockUI from './BlockUI/BlockUI'
-import NonBlockUI from './NonBlockUI/NonBlockUI'
+import { Box, Stack, Typography } from '@mui/joy';
+import BlockUI from './BlockUI/BlockUI';
+import NonBlockUI from './NonBlockUI/NonBlockUI';
 
 const WebWorker = () => {
   return (
@@ -24,7 +24,7 @@ const WebWorker = () => {
         </Box>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
-export default WebWorker
+export default WebWorker;

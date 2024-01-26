@@ -1,10 +1,10 @@
-import RouterProvider from './RouterProvider'
+import RouterProvider from './RouterProvider';
 
 type ProvidersProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 const Providers = ({ children }: ProvidersProps) => {
-  return <RouterProvider>{children}</RouterProvider>
-}
+  return <RouterProvider>{children}</RouterProvider>;
+};
 
-export default Providers
+export default Providers;
